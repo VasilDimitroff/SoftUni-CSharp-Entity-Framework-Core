@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using EmployeesFromResearchAndDevelopment.Models;
+using EmployeesAndProjects.Models;
 
-namespace EmployeesFromResearchAndDevelopment.Data
+namespace EmployeesAndProjects.Data
 {
     public partial class SoftUniContext : DbContext
     {
@@ -34,6 +34,8 @@ namespace EmployeesFromResearchAndDevelopment.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
+
             modelBuilder.Entity<Address>(entity =>
             {
                 entity.HasKey(e => e.AddressId);
@@ -175,10 +177,6 @@ namespace EmployeesFromResearchAndDevelopment.Data
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
-
-            OnModelCreatingPartial(modelBuilder);
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

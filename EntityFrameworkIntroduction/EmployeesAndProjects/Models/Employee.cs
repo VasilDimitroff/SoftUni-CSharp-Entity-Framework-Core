@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EmployeesFullInformation.Models
+namespace EmployeesAndProjects.Models
 {
     public class Employee
     {
