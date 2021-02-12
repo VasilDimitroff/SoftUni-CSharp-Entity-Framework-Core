@@ -14,7 +14,7 @@ namespace EmployeesAndProjects
         public static void Main(string[] args)
         {
             using var db = new SoftUniContext();
-            Console.WriteLine(RemoveTown(db));
+           // Console.WriteLine(RemoveTown(db));
         }
 
         //Problem 03
