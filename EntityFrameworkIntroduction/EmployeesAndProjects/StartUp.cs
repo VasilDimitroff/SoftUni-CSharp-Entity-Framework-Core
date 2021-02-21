@@ -14,7 +14,7 @@ namespace EmployeesAndProjects
         public static void Main(string[] args)
         {
             using var db = new SoftUniContext();
-           // Console.WriteLine(RemoveTown(db));
+           Console.WriteLine(TEST(db));
         }
 
         //Problem 03
@@ -459,6 +459,18 @@ namespace EmployeesAndProjects
 
             return $"{addressesToDelCount} addresses in {townToDelete.Name} were deleted";
         }
+
+        public static string TEST(SoftUniContext context)
+        {
+            Employee employee = context.Employees.FirstOrDefault(x=> x.JobTitle =="Tool Designer");
+
+            string name = employee.FirstName + " " + employee.LastName;
+
+            
+
+            return name;
+        }
+
 
     }
 }
