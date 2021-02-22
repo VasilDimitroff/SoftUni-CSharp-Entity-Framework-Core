@@ -14,7 +14,7 @@ namespace EmployeesAndProjects
         public static void Main(string[] args)
         {
             using var db = new SoftUniContext();
-           Console.WriteLine(TEST(db));
+           Console.WriteLine(GetEmployee147(db));
         }
 
         //Problem 03
