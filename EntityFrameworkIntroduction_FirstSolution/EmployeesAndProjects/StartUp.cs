@@ -464,9 +464,7 @@ namespace EmployeesAndProjects
         {
             Employee employee = context.Employees.FirstOrDefault(x=> x.JobTitle =="Tool Designer");
 
-            string name = employee.FirstName + " " + employee.LastName;
-
-            
+            string name = employee.FirstName + " " + employee.LastName;     
 
             return name;
         }
