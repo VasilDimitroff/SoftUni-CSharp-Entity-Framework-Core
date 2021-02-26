@@ -201,7 +201,6 @@
         }
 
         //Problem 08
-
         public static string GetAuthorNamesEndingIn(BookShopContext context, string input)
         {
             var authors = context.Authors
@@ -270,7 +269,6 @@
         public static int CountBooks(BookShopContext context, int lengthCheck)
             => context.Books.Count(b => b.Title.Length > lengthCheck);
 
-
         //Problem 12
 
         public static string CountCopiesByAuthor(BookShopContext context)
@@ -292,7 +290,6 @@
 
             return sb.ToString().TrimEnd();
         }
-
 
         //Problem 13
         public static string GetTotalProfitByCategory(BookShopContext context)
@@ -353,7 +350,6 @@
             return sb.ToString().TrimEnd();
         }
 
-
         //Problem 15
         public static void IncreasePrices(BookShopContext context)
         {
@@ -367,6 +363,7 @@
             context.SaveChanges();
         }
 
+        //Problem 16
         public static int RemoveBooks(BookShopContext context)
         {
             var books = context.Books.Where(b => b.Copies < 4200).ToList();
