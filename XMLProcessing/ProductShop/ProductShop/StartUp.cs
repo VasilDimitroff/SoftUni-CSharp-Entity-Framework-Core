@@ -1,10 +1,12 @@
 ﻿using ProductShop.Data;
+using ProductShop.Dtos.Export;
 using ProductShop.Dtos.Import;
 using ProductShop.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -16,9 +18,9 @@ namespace ProductShop
         {
             var db = new ProductShopContext();
 
-            var xml = File.ReadAllText("../../../Datasets/categories-products.xml");
+            //var xml = File.ReadAllText("../../../Datasets/categories-products.xml");
 
-            var result = ImportCategoryProducts(db, xml);
+            var result = GetProductsInRange(db);
 
             Console.WriteLine(result);
         }
@@ -132,6 +134,32 @@ namespace ProductShop
             context.SaveChanges();
 
             return $"Successfully imported {categoryProducts.Count}";
+        }
+
+        public static string GetProductsInRange(ProductShopContext context)
+        {
+            var productsInRangeDto = context.Products
+                .Where(product => product.Price >= 500 && product.Price <= 1000)
+                .OrderBy(product => product.Price)
+                .Take(10)
+                .Select(product => new ExportProductsInRangeDto
+                {
+                    Name = product.Name,
+                    Price = product.Price,
+                    BuyerFullName = product.Buyer.FirstName + " " + product.Buyer.LastName,
+                })
+                .ToArray();
+
+            var namespaces = new XmlSerializerNamespaces();
+            namespaces.Add(String.Empty, String.Empty);
+
+            var sb = new StringBuilder();
+
+            var serializer = new XmlSerializer(typeof(ExportProductsInRangeDto[]), new XmlRootAttribute("Products"));
+   
+            serializer.Serialize(new StringWriter(sb), productsInRangeDto, namespaces);
+
+            return sb.ToString().Trim();
         }
 
     }
