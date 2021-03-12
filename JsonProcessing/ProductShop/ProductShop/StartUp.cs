@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using ProductShop.Data;
@@ -12,21 +13,23 @@ namespace ProductShop
     public class StartUp
     {
         public static void Main(string[] args)
-        {   
-            var context = new ProductShopContext();
+        {
+            ProductShopContext context = new ProductShopContext();
 
-            context.Database.EnsureCreated();     
+            //context.Database.EnsureCreated();
 
            //string json = File.ReadAllText("../../../Datasets/categories-products.json");
+            var result = GetUsersWithProducts(context);
 
-           var result = GetUsersWithProducts(context);
-           Console.WriteLine(result);
+            Console.WriteLine(result);
+
         }
 
-        //Problem 1
+        //Import data
+
         public static string ImportUsers(ProductShopContext context, string inputJson)
         {
-            User[] users = JsonConvert.DeserializeObject<User[]>(inputJson);
+           User[] users = JsonConvert.DeserializeObject<User[]>(inputJson);
 
             context.Users.AddRange(users);
 
@@ -35,47 +38,49 @@ namespace ProductShop
             return $"Successfully imported {users.Length}";
         }
 
-        //Problem 2
         public static string ImportProducts(ProductShopContext context, string inputJson)
         {
-            Product[] products = JsonConvert.DeserializeObject<Product[]>(inputJson);
+            var products = JsonConvert.DeserializeObject<Product[]>(inputJson);
 
             context.Products.AddRange(products);
-
             context.SaveChanges();
 
             return $"Successfully imported {products.Length}";
         }
 
-        //Problem 3
         public static string ImportCategories(ProductShopContext context, string inputJson)
         {
-            Category[] categories = JsonConvert.DeserializeObject<Category[]>(inputJson)
-                .Where(x => x.Name != null)
-                .ToArray();
+            var categories = JsonConvert.DeserializeObject<Category[]>(inputJson);
+            var categoriesToAdd = new List<Category>();
 
-            context.Categories.AddRange(categories);
+            foreach (var cat in categories)
+            {
+                if (cat.Name == null)
+                {
+                    continue;
+                }
 
+                categoriesToAdd.Add(cat);
+            }
+
+            context.Categories.AddRange(categoriesToAdd);
             context.SaveChanges();
 
-            return $"Successfully imported {categories.Length}";
-
+            return $"Successfully imported {categoriesToAdd.Count}";
         }
 
-        //Problem 4
         public static string ImportCategoryProducts(ProductShopContext context, string inputJson)
         {
-            CategoryProduct[] categoriesProducts = JsonConvert.DeserializeObject<CategoryProduct[]>(inputJson);
+            var categoriesProducts = JsonConvert.DeserializeObject<CategoryProduct[]>(inputJson);
 
             context.CategoryProducts.AddRange(categoriesProducts);
 
             context.SaveChanges();
 
             return $"Successfully imported {categoriesProducts.Length}";
-
         }
 
-        //Problem 5
+        //Querying
         public static string GetProductsInRange(ProductShopContext context)
         {
             var products = context.Products
@@ -84,98 +89,95 @@ namespace ProductShop
                 {
                     name = product.Name,
                     price = product.Price,
-                    seller  = product.Seller.FirstName + " " + product.Seller.LastName,
+                    seller = product.Seller.FirstName + " " + product.Seller.LastName,
                 })
                 .OrderBy(product => product.price)
                 .ToArray();
 
-            string result = JsonConvert.SerializeObject(products, Formatting.Indented);
+            var json = JsonConvert.SerializeObject(products, Formatting.Indented);
 
-            return result;
+            return json;
         }
 
-        //Problem 6
         public static string GetSoldProducts(ProductShopContext context)
         {
             var users = context.Users
-                .Where(user => user.ProductsSold.Any(product => product.Buyer != null))
+                .Where(user => user.ProductsSold.Any(p => p.Buyer != null))
                 .Select(user => new
                 {
                     firstName = user.FirstName,
                     lastName = user.LastName,
                     soldProducts = user.ProductsSold
-                    .Where(product => product.Buyer != null)
-                    .Select(product => new
-                    {
-                        name = product.Name,
-                        price = product.Price,
-                        buyerFirstName = product.Buyer.FirstName,
-                        buyerLastName = product.Buyer.LastName,
-                    })
-                    .ToArray()
+                        .Where(p => p.Buyer != null)
+                        .Select(prod => new
+                            {
+                                name = prod.Name,
+                                price = prod.Price,
+                                buyerFirstName = prod.Buyer.FirstName,
+                                buyerLastName = prod.Buyer.LastName
+                            })
                 })
                 .OrderBy(user => user.lastName)
-                .ThenBy(user=> user.firstName)
+                .ThenBy(user => user.firstName)
                 .ToList();
 
-            var result = JsonConvert.SerializeObject(users, Formatting.Indented);
+            var json = JsonConvert.SerializeObject(users, Formatting.Indented);
 
-            return result;
+            return json;
         }
 
-        //Problem 7
         public static string GetCategoriesByProductsCount(ProductShopContext context)
         {
             var categories = context.Categories
-                .OrderByDescending(category => category.CategoryProducts.Count())
+                .OrderByDescending(cat => cat.CategoryProducts.Count())
                 .Select(category => new
                 {
                     category = category.Name,
                     productsCount = category.CategoryProducts.Count(),
-                    averagePrice = category.CategoryProducts.Average(product => product.Product.Price).ToString("F2"),
-                    totalRevenue = category.CategoryProducts.Sum(product => product.Product.Price).ToString("F2"),
+                    averagePrice = category.CategoryProducts.Average(cp => cp.Product.Price).ToString("f2"),
+                    totalRevenue = category.CategoryProducts.Sum(cp => cp.Product.Price).ToString("f2")
                 })
                 .ToList();
 
-            var result = JsonConvert.SerializeObject(categories, Formatting.Indented);
+            var json = JsonConvert.SerializeObject(categories, Formatting.Indented);
 
-            return result;
+            return json;
         }
 
-        //Problem 8
         public static string GetUsersWithProducts(ProductShopContext context)
         {
-            var users = context.Users.Include(p => p.ProductsSold)
-                .ToList()
-                .Where(user => user.ProductsSold.Any(product => product.Buyer != null))
+            var users = context.Users
+                .Where(u => u.ProductsSold.Any(p => p.Buyer != null))
+                .Include(c => c.ProductsSold)
                 .OrderByDescending(u => u.ProductsSold.Count(p => p.Buyer != null))
-                .Select(user => new
+                .ToList()
+                .Select(u => new
                 {
-                    firstName = user.FirstName,
-                    lastName = user.LastName,
-                    age = user.Age,
-                    soldProducts = user.ProductsSold.Where(p => p.Buyer != null).Select(product => new
+                    lastName = u.LastName,
+                    age = u.Age,
+                    soldProducts = new
                     {
-                        count = user.ProductsSold.Count(),
-                        products = user.ProductsSold.Select(p => new
+                        count = u.ProductsSold.Count(p => p.Buyer != null),
+                        products = u.ProductsSold
+                            .ToList()
+                        .Where(p => p.Buyer != null)
+                        .Select(p => new
                         {
                             name = p.Name,
-                            price = p.Price,
+                            price = p.Price
                         })
-                        .ToList()
-                    })
+                            .ToList()
+                    }
                 })
                 .ToList();
                 
-                
-
-            var userWithCountProducts = new
+            var resultObj = new 
             {
                 usersCount = users.Count,
                 users = users
             };
 
-            string result = JsonConvert.SerializeObject(userWithCountProducts, new JsonSerializerSettings
+            var result = JsonConvert.SerializeObject(resultObj, new JsonSerializerSettings
             {
                 Formatting = Formatting.Indented,
                 NullValueHandling = NullValueHandling.Ignore
