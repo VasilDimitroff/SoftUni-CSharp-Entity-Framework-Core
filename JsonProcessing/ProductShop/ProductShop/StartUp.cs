@@ -50,7 +50,7 @@ namespace ProductShop
 
         public static string ImportCategories(ProductShopContext context, string inputJson)
         {
-            var categories = JsonConvert.DeserializeObject<Category[]>(inputJson);
+            Category[] categories = JsonConvert.DeserializeObject<Category[]>(inputJson);
             var categoriesToAdd = new List<Category>();
 
             foreach (var cat in categories)
