@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 using VaporStore.Data.Models.Enums;
 
 namespace VaporStore.Data.Models
@@ -10,16 +11,19 @@ namespace VaporStore.Data.Models
         public int Id { get; set; }
 
         [Required]
-        public virtual PurchaseType Type { get; set; }
-       
+        public PurchaseType Type { get; set; }
+
         [Required]
+        [RegularExpression(@"^[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}$")]
         public string ProductKey { get; set; }
 
+        [Required]
         public DateTime Date { get; set; }
-        public int CardId { get; set; }
-        public virtual Card Card { get; set; }
-        public int GameId { get; set; }
-        public virtual Game Game { get; set; }
 
+        public int CardId { get; set; }
+        public Card Card { get; set; }
+
+        public int GameId { get; set; }
+        public Game Game { get; set; }
     }
 }

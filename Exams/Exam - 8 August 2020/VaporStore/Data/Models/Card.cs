@@ -11,18 +11,19 @@ namespace VaporStore.Data.Models
         public int Id { get; set; }
 
         [Required]
+        [RegularExpression(@"^[0-9]{4}\s+[0-9]{4}\s+[0-9]{4}\s+[0-9]{4}$")]
         public string Number { get; set; }
 
         [Required]
-        [DataType("char(3)")]
+        [RegularExpression(@"^[0-9]{3}$")]
         public string Cvc { get; set; }
 
         [Required]
-        public virtual CardType Type { get; set; }
+        public CardType Type { get; set; }
 
         public int UserId { get; set; }
-        public virtual User User { get; set; }
 
-        public virtual ICollection<Purchase> Purchases { get; set; } = new HashSet<Purchase>();
+        public User User { get; set; }
+        public ICollection<Purchase> Purchases { get; set; } = new HashSet<Purchase>();
     }
 }

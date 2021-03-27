@@ -11,6 +11,7 @@ namespace VaporStore.Data.Models
 
         [Required]
         public string Name { get; set; }
-        public virtual ICollection<GameTag> GameTags { get; set; } = new HashSet<GameTag>();
+
+        public ICollection<GameTag> GameTags { get; set; } = new HashSet<GameTag>();
     }
 }

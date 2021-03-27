@@ -19,7 +19,7 @@
 
 			var projectDir = GetProjectDirectory();
 
-			ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
+			//ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
 			ExportEntities(context, projectDir + @"ImportResults/");
 
 			using (var transaction = context.Database.BeginTransaction())
@@ -27,7 +27,6 @@
 				transaction.Rollback();
 			}
 		}
-
 
 		private static void ExportEntities(VaporStoreDbContext context, string exportDir)
 		{
@@ -37,7 +36,6 @@
 			var xmlOutput = Serializer.ExportUserPurchasesByType(context, "Digital");
 			PrintAndExportEntityToFile(xmlOutput, exportDir + "UserPurchases.xml");
 		}
-
 
 		private static void ImportEntities(VaporStoreDbContext context, string baseDir, string exportDir)
 		{
@@ -50,8 +48,6 @@
 			var purchases = Deserializer.ImportPurchases(context, File.ReadAllText(baseDir + "purchases.xml"));
 			PrintAndExportEntityToFile(purchases, exportDir + "ImportPurchases.txt");
 		}
-
-
 
 		private static void ResetDatabase(DbContext context, bool shouldDropDatabase = false)
 		{
