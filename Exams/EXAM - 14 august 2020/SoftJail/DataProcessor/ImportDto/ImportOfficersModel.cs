@@ -7,32 +7,39 @@ using System.Xml.Serialization;
 namespace SoftJail.DataProcessor.ImportDto
 {
     [XmlType("Officer")]
-    public class ImportOfficerDto
+    public class ImportOfficersModel
     {
         [XmlElement("Name")]
-        [Required]
         [MinLength(3)]
-        [MaxLength(20)]
+        [MaxLength(30)]
+        [Required]
         public string Name { get; set; }
 
         [XmlElement("Money")]
-        [Required]
-        [Range(0, Double.PositiveInfinity)]
+        [Range(typeof(decimal), "0", "79228162514264337593543950335")]
         public decimal Money { get; set; }
 
-        [XmlElement("Position")]
         [Required]
+        [XmlElement("Position")]
         public string Position { get; set; }
 
-        [XmlElement("Weapon")]
         [Required]
+        [XmlElement("Weapon")]
         public string Weapon { get; set; }
 
         [XmlElement("DepartmentId")]
-        [Required]
         public int DepartmentId { get; set; }
 
         [XmlArray("Prisoners")]
-        public List<PrisonerDto> Prisoners { get; set; }
+        public ImportPrisonerIdModel[] Prisoners { get; set; }
     }
+
+    [XmlType("Prisoner")]
+    public class ImportPrisonerIdModel
+    {
+        [XmlAttribute("id")]
+        public int Id { get; set; }
+    }
+
+
 }

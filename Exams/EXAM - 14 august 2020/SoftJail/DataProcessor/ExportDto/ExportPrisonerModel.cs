@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace SoftJail.DataProcessor.ExportDto
 {
     [XmlType("Prisoner")]
-    public class ExportPrisonerDto
+    public class ExportPrisonerModel
     {
         [XmlElement("Id")]
         public int Id { get; set; }
@@ -18,6 +18,13 @@ namespace SoftJail.DataProcessor.ExportDto
         public string IncarcerationDate { get; set; }
 
         [XmlArray("EncryptedMessages")]
-        public List<MessageDto> EncryptedMessages { get; set; }
+        public MessageModel[] EncryptedMessages { get; set; }
+    }
+
+    [XmlType("Message")]
+    public class MessageModel
+    {
+        [XmlElement("Description")]
+        public string Description { get; set; }
     }
 }

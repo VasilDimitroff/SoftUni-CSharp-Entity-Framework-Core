@@ -6,8 +6,8 @@ namespace SoftJail.Data.Models.Enums
 {
     public enum Position
     {
-        Overseer,
-        Guard,
+        Overseer, 
+        Guard, 
         Watcher,
         Labour
     }

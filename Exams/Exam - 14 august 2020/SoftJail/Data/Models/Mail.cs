@@ -16,11 +16,10 @@ namespace SoftJail.Data.Models
         public string Sender { get; set; }
 
         [Required]
-        [RegularExpression(@"^[0-9A-z\s+]+str\.$")]
+        [RegularExpression(@"^[0-9A-z\s]{1,} str.$")]
         public string Address { get; set; }
 
         public int PrisonerId { get; set; }
-
         public Prisoner Prisoner { get; set; }
     }
 }

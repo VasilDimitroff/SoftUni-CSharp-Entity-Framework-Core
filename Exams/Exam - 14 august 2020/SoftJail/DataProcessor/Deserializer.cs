@@ -19,57 +19,52 @@
     {
         public static string ImportDepartmentsCells(SoftJailDbContext context, string jsonString)
         {
-            var depsAndCellsDto = JsonConvert.DeserializeObject<ImportDepartmentsAndCellsDto[]>(jsonString);
+            var departmentModels =
+                JsonConvert.DeserializeObject<ImportDepartmentModel[]>(jsonString);
 
-            var departmentsToAdd = new List<Department>();
             var sb = new StringBuilder();
 
-            foreach (var depAndCellDto in depsAndCellsDto)
-            { 
-                var departmentCellsCount = depAndCellDto.Cells.Count();
-
-                if (!IsValid(depAndCellDto) || !IsValid(depAndCellDto.Name) || departmentCellsCount < 1 )
+            foreach (var model in departmentModels)
+            {
+                if (!IsValid(model) || model.Cells.Length < 1)
                 {
-                    sb.AppendLine("Invalid Data");
+                    sb.AppendLine($"Invalid Data");
                     continue;
                 }
-
-                bool isCellsValid = true;
 
                 var department = new Department
                 {
-                    Name = depAndCellDto.Name
-                };       
+                    Name = model.Name,
+                };
 
-                foreach (var cellDto in depAndCellDto.Cells)
+                bool isInvalidCell = false;
+
+                foreach (var cellModel in model.Cells)
                 {
-                    if (!IsValid(cellDto))
+
+                    if (!IsValid(cellModel))
                     {
-                        sb.AppendLine("Invalid Data");
-                        isCellsValid = false;
-                        break;
+                        sb.AppendLine($"Invalid Data");
+                        isInvalidCell = true;
+                        continue;
                     }
 
-                    var cell = new Cell
+                    department.Cells.Add(new Cell
                     {
-                        CellNumber = cellDto.CellNumber,
-                        Department = department,
-                        HasWindow = cellDto.HasWindow
-                    };
-
-                    department.Cells.Add(cell);
+                        CellNumber = cellModel.CellNumber,
+                        HasWindow = cellModel.HasWindow
+                    });
                 }
 
-                if (!isCellsValid)
+                if (isInvalidCell)
                 {
                     continue;
                 }
 
-                departmentsToAdd.Add(department);
+                context.Departments.Add(department);
                 sb.AppendLine($"Imported {department.Name} with {department.Cells.Count} cells");
             }
 
-            context.Departments.AddRange(departmentsToAdd);
             context.SaveChanges();
 
             return sb.ToString().TrimEnd();
@@ -77,14 +72,13 @@
 
         public static string ImportPrisonersMails(SoftJailDbContext context, string jsonString)
         {
-            var prisonersDto = JsonConvert.DeserializeObject<ImportPrisonerDto[]>(jsonString);
+            var prisonersModels = JsonConvert.DeserializeObject<ImportPrisonerWithMailModel[]>(jsonString);
 
             var sb = new StringBuilder();
-            var prisoners = new List<Prisoner>();
 
-            foreach (var prisonerDto in prisonersDto)
+            foreach (var prisModel in prisonersModels)
             {
-                if (!IsValid(prisonerDto))
+                if (!IsValid(prisModel))
                 {
                     sb.AppendLine("Invalid Data");
                     continue;
@@ -92,55 +86,75 @@
 
                 var prisoner = new Prisoner
                 {
-                    FullName = prisonerDto.FullName,
-                    Nickname = prisonerDto.Nickname,
-                    Age = prisonerDto.Age,
-                    IncarcerationDate = DateTime.ParseExact(prisonerDto.IncarcerationDate, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                    Bail = prisonerDto.Bail,
-                    CellId = prisonerDto.CellId,
+                    FullName = prisModel.FullName,
+                    Nickname = prisModel.Nickname,
+                    Age = prisModel.Age,
+                    Bail = prisModel.Bail,
+                    CellId = prisModel.CellId
                 };
 
-                if (prisonerDto.ReleaseDate == null)
+                DateTime incarcerationDate;
+                bool isIncarcerationDateParsed = DateTime.TryParseExact(prisModel.IncarcerationDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out incarcerationDate);
+
+                DateTime releaseDate;
+                bool isReleaseDateParsed = DateTime.TryParseExact(prisModel.ReleaseDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out releaseDate);
+
+                if (!isIncarcerationDateParsed)
+                {
+                    sb.AppendLine("Invalid Data");
+                    continue;
+                }
+
+                prisoner.IncarcerationDate = incarcerationDate;
+
+                if (prisModel.ReleaseDate == null)
                 {
                     prisoner.ReleaseDate = null;
                 }
 
-                else
+                else if (isReleaseDateParsed)
                 {
-                    prisoner.ReleaseDate = DateTime.ParseExact(prisonerDto.ReleaseDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    DateTime? date = releaseDate;
+                    prisoner.ReleaseDate = date;
                 }
 
-                bool isPrisonerValid = true;
-
-                foreach (var mailDto in prisonerDto.Mails)
+                else
                 {
-                    if (!IsValid(mailDto))
+                    sb.AppendLine("Invalid Data");
+                    continue;
+                }
+
+                bool isValid = true;
+
+                foreach (var mailModel in prisModel.Mails)
+                {
+                    if (!IsValid(mailModel))
                     {
-                        isPrisonerValid = false;
                         sb.AppendLine("Invalid Data");
-                        continue;
+                        isValid = false;
+                        break;
                     }
 
                     var mail = new Mail
                     {
-                        Description = mailDto.Description,
-                        Sender = mailDto.Sender,
-                        Address = mailDto.Address
+                        Address = mailModel.Address,
+                        Sender = mailModel.Sender,
+                        Description = string.Join("", mailModel.Description.Reverse()),
+                        Prisoner = prisoner
                     };
 
                     prisoner.Mails.Add(mail);
                 }
 
-                if (!isPrisonerValid)
+                if (!isValid)
                 {
                     continue;
                 }
 
-                prisoners.Add(prisoner);
+                context.Prisoners.Add(prisoner);
                 sb.AppendLine($"Imported {prisoner.FullName} {prisoner.Age} years old");
             }
 
-            context.Prisoners.AddRange(prisoners);
             context.SaveChanges();
 
             return sb.ToString().TrimEnd();
@@ -148,78 +162,61 @@
 
         public static string ImportOfficersPrisoners(SoftJailDbContext context, string xmlString)
         {
-            var serializer =
-                new XmlSerializer(typeof(ImportOfficerDto[]), new XmlRootAttribute("Officers"));
-
-            var stringReader = new StringReader(xmlString);
-
-            var officersDto = (ImportOfficerDto[])serializer.Deserialize(stringReader);
-
+            var serializer = new XmlSerializer(typeof(ImportOfficersModel[]), new XmlRootAttribute("Officers"));
+            var officerModels = (ImportOfficersModel[])serializer.Deserialize(new StringReader(xmlString));
             var sb = new StringBuilder();
 
-            List<Officer> officers = new List<Officer>();
-
-            foreach (var officerDto in officersDto)
+            foreach (var officerModel in officerModels)
             {
-                if (!IsValid(officerDto))
+                if (!IsValid(officerModel))
                 {
                     sb.AppendLine("Invalid Data");
                     continue;
                 }
-
-                Position position;
-                Weapon weapon;
-
-                var isParsedPosition = Enum.TryParse<Position>(officerDto.Position, out position);
-                var isParsedWeapon = Enum.TryParse<Weapon>(officerDto.Weapon, out weapon);
 
                 var officer = new Officer
                 {
-                    FullName = officerDto.Name,
-                    Salary = officerDto.Money,
-                    DepartmentId = officerDto.DepartmentId
+                    FullName = officerModel.Name,
+                    Salary = officerModel.Money,
+                    DepartmentId = officerModel.DepartmentId
                 };
 
-                if (isParsedPosition)
-                {
-                    officer.Position = position;
-                }
+                Position position;
+                bool isPositionParsed = Enum.TryParse<Position>(officerModel.Position, out position);
 
-                else
-                {
-                    sb.AppendLine("Invalid Data");
-                    continue;
-                }
+                Weapon weapon;
+                bool isWeaponParsed = Enum.TryParse<Weapon>(officerModel.Weapon, out weapon);
 
-                if (isParsedWeapon)
-                {
-                    officer.Weapon = weapon;
-                }
-
-                else
+                if (!isWeaponParsed || !isPositionParsed)
                 {
                     sb.AppendLine("Invalid Data");
                     continue;
                 }
 
+                officer.Position = position;
+                officer.Weapon = weapon;
 
-                foreach (var prisonerDto in officerDto.Prisoners)
+                foreach (var prisModel in officerModel.Prisoners)
                 {
+                    if (!IsValid(prisModel))
+                    {
+                        sb.AppendLine("Invalid Data");
+                        continue;
+                    }
+
                     var officerPrisoner = new OfficerPrisoner
                     {
-                        PrisonerId = prisonerDto.Id,
-                        Officer = officer
+                        Officer = officer,
+                        PrisonerId = prisModel.Id
                     };
 
-                    officer.OfficerPrisoners.Add(officerPrisoner);
+                   officer.OfficerPrisoners.Add(officerPrisoner);
                 }
 
-                sb.AppendLine($"Imported {officer.FullName} ({officer.OfficerPrisoners.Count()} prisoners)");
-
-                officers.Add(officer);
+                context.Officers.Add(officer);
+                sb.AppendLine($"Imported {officer.FullName} ({officer.OfficerPrisoners.Count} prisoners)");
             }
 
-            context.Officers.AddRange(officers);
             context.SaveChanges();
 
             return sb.ToString().TrimEnd();

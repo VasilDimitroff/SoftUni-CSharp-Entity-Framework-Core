@@ -5,30 +5,39 @@ using System.Text;
 
 namespace SoftJail.DataProcessor.ImportDto
 {
-    public class ImportPrisonerDto
+    public class ImportPrisonerWithMailModel
     {
-        [Required]
         [MinLength(3)]
         [MaxLength(20)]
+        [Required]
         public string FullName { get; set; }
 
         [Required]
-        [RegularExpression(@"^The\s[A-Z]{1}[a-z]*$")]
+        [RegularExpression(@"^The [A-Z][A-z]{1,}$")]
         public string Nickname { get; set; }
 
-        [Required]
         [Range(18, 65)]
         public int Age { get; set; }
 
         [Required]
         public string IncarcerationDate { get; set; }
         public string ReleaseDate { get; set; }
-
-        [Range(0, Double.PositiveInfinity)]
         public decimal? Bail { get; set; }
         public int? CellId { get; set; }
-
-        public List<ImportMailDto> Mails { get; set; }
-
+        public ImportPrisonerMailModel[] Mails { get; set; }
     }
+
+    public class ImportPrisonerMailModel
+    {
+        [Required]
+        public string Description { get; set; }
+
+        [Required]
+        public string Sender { get; set; }
+
+        [Required]
+        [RegularExpression(@"^[0-9A-z\s]{1,} str.$")]
+        public string Address { get; set; }
+    }
+
 }
