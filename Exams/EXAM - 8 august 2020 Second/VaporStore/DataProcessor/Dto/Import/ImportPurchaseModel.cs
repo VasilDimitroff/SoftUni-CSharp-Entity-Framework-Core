@@ -7,28 +7,29 @@ using System.Xml.Serialization;
 namespace VaporStore.DataProcessor.Dto.Import
 {
     [XmlType("Purchase")]
-    public class ImportPurchaseDto
+    public class ImportPurchaseModel
     {
         [XmlAttribute("title")]
         [Required]
-        public string GameName { get; set; }
+        public string Title { get; set; }
 
-        [XmlElement("Type")]
         [Required]
+        [XmlElement("Type")]
         public string Type { get; set; }
 
         [XmlElement("Key")]
         [Required]
-        [RegularExpression(@"^[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}$")]
-        public string ProductKey { get; set; }
+        [RegularExpression(@"^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$")]
+        public string Key { get; set; }
 
         [XmlElement("Card")]
-        [RegularExpression(@"^[0-9]{4}\s+[0-9]{4}\s+[0-9]{4}\s+[0-9]{4}$")]
         [Required]
-        public string CardNumber { get; set; }
+        public string Card { get; set; }
 
         [XmlElement("Date")]
         [Required]
         public string Date { get; set; }
     }
+
+    
 }

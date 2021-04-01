@@ -14,12 +14,10 @@ namespace VaporStore.Data.Models
         public PurchaseType Type { get; set; }
 
         [Required]
-        [RegularExpression(@"^[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}$")]
+        [RegularExpression(@"^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$")]
         public string ProductKey { get; set; }
 
-        [Required]
         public DateTime Date { get; set; }
-
         public int CardId { get; set; }
         public Card Card { get; set; }
 

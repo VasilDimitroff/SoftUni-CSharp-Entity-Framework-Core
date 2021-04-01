@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VaporStore.Data.Models
 {
-    public class Genre
+    public class Developer
     {
         public int Id { get; set; }
 

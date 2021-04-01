@@ -4,9 +4,9 @@ using System.Text;
 
 namespace VaporStore.Data.Models.Enums
 {
-    public enum CardType
+    public enum PurchaseType
     {
-        Debit,
-        Credit
+        Retail, 
+        Digital
     }
 }

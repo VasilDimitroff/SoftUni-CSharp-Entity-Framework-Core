@@ -5,22 +5,24 @@ using System.Text;
 
 namespace VaporStore.DataProcessor.Dto.Import
 {
-    public class ImportGameDto
+    public class ImportGameWithTagsModel
     {
         [Required]
         public string Name { get; set; }
 
         [Range(typeof(decimal), "0", "79228162514264337593543950335")]
-        [Required]
         public decimal Price { get; set; }
+
         [Required]
         public string ReleaseDate { get; set; }
+
         [Required]
         public string Developer { get; set; }
+
         [Required]
         public string Genre { get; set; }
 
-        [Required]
-        public List<string> Tags { get; set; }
+        public string[] Tags { get; set; }
     }
+
 }

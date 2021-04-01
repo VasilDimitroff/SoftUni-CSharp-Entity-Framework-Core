@@ -15,11 +15,11 @@
 
 			Mapper.Initialize(config => config.AddProfile<VaporStoreProfile>());
 
-			ResetDatabase(context, shouldDropDatabase: true);
+			ResetDatabase(context, shouldDropDatabase: false);
 
 			var projectDir = GetProjectDirectory();
 
-			//ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
+			ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
 			ExportEntities(context, projectDir + @"ImportResults/");
 
 			using (var transaction = context.Database.BeginTransaction())
@@ -79,7 +79,7 @@
 		private static void PrintAndExportEntityToFile(string entityOutput, string outputPath)
 		{
 			Console.WriteLine(entityOutput);
-			File.WriteAllText(outputPath, entityOutput.TrimEnd());
+			//File.WriteAllText(outputPath, entityOutput.TrimEnd());
 		}
 
 		private static string GetProjectDirectory()
