@@ -5,26 +5,32 @@ using System.Text;
 
 namespace BookShop.DataProcessor.ImportDto
 {
-    public class ImportAuthorDto
+    public class ImportAuthorModel
     {
+        [Required]
         [MinLength(3)]
         [MaxLength(30)]
-        [Required]
         public string FirstName { get; set; }
 
+        [Required]
         [MinLength(3)]
         [MaxLength(30)]
-        [Required]
         public string LastName { get; set; }
 
         [Required]
         [RegularExpression(@"^[0-9]{3}-[0-9]{3}-[0-9]{4}$")]
         public string Phone { get; set; }
 
-        [EmailAddress]
         [Required]
-        [RegularExpression(@"^[0-9A-z._-]+@[0-9A-z-]{1,}.[A-z]{1,}.*[A-z]*$")]
+        [EmailAddress]
         public string Email { get; set; }
-        public List<BookDto> Books { get; set; }
+
+        public ImportBookIdModel[] Books { get; set; }
     }
+
+    public class ImportBookIdModel
+    {
+        public int? Id { get; set; }
+    }
+
 }

@@ -7,16 +7,16 @@
         "BookPrice": "78.44"
       },
       {
-        "BookName": "Earlyleaf Brome",
-        "BookPrice": "63.66"
+        "BookName": "Sphinctrina Lichen",
+        "BookPrice": "67.15"
       },
       {
-        "BookName": "Sky Mousetail",
-        "BookPrice": "13.14"
+        "BookName": "Sierra Marsh Fern",
+        "BookPrice": "42.55"
       },
       {
-        "BookName": "Arrowleaf Clover",
-        "BookPrice": "1.71"
+        "BookName": "Candle Tree",
+        "BookPrice": "9.00"
       }
     ]
   },
@@ -24,20 +24,20 @@
     "AuthorName": "Ashia Esh",
     "Books": [
       {
-        "BookName": "Twoflower Melicgrass",
-        "BookPrice": "29.06"
+        "BookName": "Allen Fissidens Moss",
+        "BookPrice": "78.44"
       },
       {
-        "BookName": "Sky Mousetail",
-        "BookPrice": "13.14"
+        "BookName": "Sphinctrina Lichen",
+        "BookPrice": "67.15"
       },
       {
-        "BookName": "Candle Tree",
-        "BookPrice": "9.00"
+        "BookName": "Borrego Milkvetch",
+        "BookPrice": "60.41"
       },
       {
-        "BookName": "Arrowleaf Clover",
-        "BookPrice": "1.71"
+        "BookName": "Jolon Clarkia",
+        "BookPrice": "40.60"
       }
     ]
   },
@@ -45,20 +45,20 @@
     "AuthorName": "Bradford Larderot",
     "Books": [
       {
-        "BookName": "Common Netbush",
-        "BookPrice": "77.83"
-      },
-      {
         "BookName": "Seepweed",
         "BookPrice": "54.05"
       },
       {
-        "BookName": "Small Floating Mannagrass",
-        "BookPrice": "49.15"
+        "BookName": "Winter Vetch",
+        "BookPrice": "19.51"
       },
       {
-        "BookName": "Woollyleaf Bur Ragweed",
-        "BookPrice": "3.90"
+        "BookName": "Gray Dogwood",
+        "BookPrice": "17.25"
+      },
+      {
+        "BookName": "Lindley's Clarkia",
+        "BookPrice": "0.87"
       }
     ]
   },
@@ -66,25 +66,67 @@
     "AuthorName": "Cynthy Boichat",
     "Books": [
       {
-        "BookName": "Silverweed",
-        "BookPrice": "88.66"
+        "BookName": "Common Netbush",
+        "BookPrice": "77.83"
       },
       {
-        "BookName": "Sphinctrina Lichen",
-        "BookPrice": "67.15"
+        "BookName": "Spreading Beaksedge",
+        "BookPrice": "2.43"
       },
       {
-        "BookName": "Seepweed",
-        "BookPrice": "54.05"
+        "BookName": "Arrowleaf Clover",
+        "BookPrice": "1.71"
       },
       {
-        "BookName": "Rough Maidenhair",
-        "BookPrice": "52.63"
+        "BookName": "Lindley's Clarkia",
+        "BookPrice": "0.87"
       }
     ]
   },
   {
     "AuthorName": "Orin Jakubovski",
+    "Books": [
+      {
+        "BookName": "Chesapeake Panicgrass",
+        "BookPrice": "96.63"
+      },
+      {
+        "BookName": "Gigantochloa",
+        "BookPrice": "65.81"
+      },
+      {
+        "BookName": "Wisconsin Rim Lichen",
+        "BookPrice": "57.79"
+      },
+      {
+        "BookName": "Tapertip Rush",
+        "BookPrice": "49.34"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Tommy Click",
+    "Books": [
+      {
+        "BookName": "Rayless Alkali Aster",
+        "BookPrice": "98.99"
+      },
+      {
+        "BookName": "Featherstem Clubmoss",
+        "BookPrice": "89.77"
+      },
+      {
+        "BookName": "Java Grass",
+        "BookPrice": "62.49"
+      },
+      {
+        "BookName": "Wideleaf Schistidium Moss",
+        "BookPrice": "16.26"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Adelaida Begwell",
     "Books": [
       {
         "BookName": "Twayblade",
@@ -95,50 +137,8 @@
         "BookPrice": "49.34"
       },
       {
-        "BookName": "Airplant",
-        "BookPrice": "30.47"
-      },
-      {
-        "BookName": "Spreading Beaksedge",
-        "BookPrice": "2.43"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Tommy Click",
-    "Books": [
-      {
-        "BookName": "Chesapeake Panicgrass",
-        "BookPrice": "96.63"
-      },
-      {
-        "BookName": "Borrego Milkvetch",
-        "BookPrice": "60.41"
-      },
-      {
-        "BookName": "Macoun's Woodroot",
-        "BookPrice": "17.91"
-      },
-      {
-        "BookName": "Lapland Poppy",
-        "BookPrice": "14.54"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Adelaida Begwell",
-    "Books": [
-      {
-        "BookName": "Roble De Sierra",
-        "BookPrice": "53.68"
-      },
-      {
-        "BookName": "Rough Maidenhair",
-        "BookPrice": "52.63"
-      },
-      {
-        "BookName": "Airplant",
-        "BookPrice": "30.47"
+        "BookName": "Arrowleaf Clover",
+        "BookPrice": "1.71"
       }
     ]
   },
@@ -146,165 +146,12 @@
     "AuthorName": "Ashleigh Beggi",
     "Books": [
       {
-        "BookName": "Rayless Alkali Aster",
-        "BookPrice": "98.99"
+        "BookName": "Seepweed",
+        "BookPrice": "54.05"
       },
-      {
-        "BookName": "Fringed Nutrush",
-        "BookPrice": "96.94"
-      },
-      {
-        "BookName": "Woollyleaf Bur Ragweed",
-        "BookPrice": "3.90"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Carmela Clemerson",
-    "Books": [
       {
         "BookName": "Rough Maidenhair",
         "BookPrice": "52.63"
-      },
-      {
-        "BookName": "Wideleaf Schistidium Moss",
-        "BookPrice": "16.26"
-      },
-      {
-        "BookName": "Roundheaded Leek",
-        "BookPrice": "10.41"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Demetre Simeons",
-    "Books": [
-      {
-        "BookName": "Java Grass",
-        "BookPrice": "62.49"
-      },
-      {
-        "BookName": "Airplant",
-        "BookPrice": "30.47"
-      },
-      {
-        "BookName": "Wideleaf Schistidium Moss",
-        "BookPrice": "16.26"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Eldin Stowell",
-    "Books": [
-      {
-        "BookName": "Silverweed",
-        "BookPrice": "88.66"
-      },
-      {
-        "BookName": "Small Floating Mannagrass",
-        "BookPrice": "49.15"
-      },
-      {
-        "BookName": "Black Bogrush",
-        "BookPrice": "3.48"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Fianna Dripps",
-    "Books": [
-      {
-        "BookName": "Maui Woodfern",
-        "BookPrice": "78.42"
-      },
-      {
-        "BookName": "Gigantochloa",
-        "BookPrice": "65.81"
-      },
-      {
-        "BookName": "Black Bogrush",
-        "BookPrice": "3.48"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Gretel Mersh",
-    "Books": [
-      {
-        "BookName": "Woodland Spurge",
-        "BookPrice": "80.52"
-      },
-      {
-        "BookName": "Wisconsin Rim Lichen",
-        "BookPrice": "57.79"
-      },
-      {
-        "BookName": "Lapland Poppy",
-        "BookPrice": "14.54"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Holly-anne Nannini",
-    "Books": [
-      {
-        "BookName": "Palo Blanco",
-        "BookPrice": "79.11"
-      },
-      {
-        "BookName": "Candle Tree",
-        "BookPrice": "9.00"
-      },
-      {
-        "BookName": "Arrowleaf Clover",
-        "BookPrice": "1.71"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Miles Flockhart",
-    "Books": [
-      {
-        "BookName": "Silverweed",
-        "BookPrice": "88.66"
-      },
-      {
-        "BookName": "Mojave Linanthus",
-        "BookPrice": "82.29"
-      },
-      {
-        "BookName": "Airplant",
-        "BookPrice": "30.47"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Noella Coslitt",
-    "Books": [
-      {
-        "BookName": "Mojave Linanthus",
-        "BookPrice": "82.29"
-      },
-      {
-        "BookName": "Common Netbush",
-        "BookPrice": "77.83"
-      },
-      {
-        "BookName": "Little Elephantshead",
-        "BookPrice": "41.81"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Oriana Brounfield",
-    "Books": [
-      {
-        "BookName": "Rayless Alkali Aster",
-        "BookPrice": "98.99"
-      },
-      {
-        "BookName": "Ochna",
-        "BookPrice": "58.87"
       },
       {
         "BookName": "Dicranodontium Moss",
@@ -313,15 +160,83 @@
     ]
   },
   {
-    "AuthorName": "Tab Cockman",
+    "AuthorName": "Carmela Clemerson",
     "Books": [
       {
-        "BookName": "Little Elephantshead",
-        "BookPrice": "41.81"
+        "BookName": "Airplant",
+        "BookPrice": "30.47"
       },
       {
-        "BookName": "Jolon Clarkia",
-        "BookPrice": "40.60"
+        "BookName": "Shingle Oak",
+        "BookPrice": "17.85"
+      },
+      {
+        "BookName": "Arrowleaf Clover",
+        "BookPrice": "1.71"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Demetre Simeons",
+    "Books": [
+      {
+        "BookName": "Jamaican Broom",
+        "BookPrice": "50.72"
+      },
+      {
+        "BookName": "Tapertip Rush",
+        "BookPrice": "49.34"
+      },
+      {
+        "BookName": "Shingle Oak",
+        "BookPrice": "17.85"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Eldin Stowell",
+    "Books": [
+      {
+        "BookName": "Common Netbush",
+        "BookPrice": "77.83"
+      },
+      {
+        "BookName": "Australian Desert Lime",
+        "BookPrice": "42.29"
+      },
+      {
+        "BookName": "Winter Vetch",
+        "BookPrice": "19.51"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Fianna Dripps",
+    "Books": [
+      {
+        "BookName": "Australian Desert Lime",
+        "BookPrice": "42.29"
+      },
+      {
+        "BookName": "Great Basin Woollystar",
+        "BookPrice": "31.74"
+      },
+      {
+        "BookName": "Roundheaded Leek",
+        "BookPrice": "10.41"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Gretel Mersh",
+    "Books": [
+      {
+        "BookName": "Maui Woodfern",
+        "BookPrice": "78.42"
+      },
+      {
+        "BookName": "Southern Pepperwort",
+        "BookPrice": "63.48"
       },
       {
         "BookName": "Wideleaf Schistidium Moss",
@@ -330,19 +245,104 @@
     ]
   },
   {
-    "AuthorName": "Torrey Ricardon",
+    "AuthorName": "Holly-anne Nannini",
     "Books": [
       {
-        "BookName": "Woodland Spurge",
-        "BookPrice": "80.52"
+        "BookName": "Ethiopian Rattlebox",
+        "BookPrice": "87.96"
+      },
+      {
+        "BookName": "Sphinctrina Lichen",
+        "BookPrice": "67.15"
       },
       {
         "BookName": "Borrego Milkvetch",
         "BookPrice": "60.41"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Miles Flockhart",
+    "Books": [
+      {
+        "BookName": "Common Netbush",
+        "BookPrice": "77.83"
       },
       {
-        "BookName": "Great Basin Woollystar",
-        "BookPrice": "31.74"
+        "BookName": "Tapertip Rush",
+        "BookPrice": "49.34"
+      },
+      {
+        "BookName": "Singlestem Leather-root",
+        "BookPrice": "25.11"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Noella Coslitt",
+    "Books": [
+      {
+        "BookName": "Stebbins' Desertparsley",
+        "BookPrice": "34.18"
+      },
+      {
+        "BookName": "Singlestem Leather-root",
+        "BookPrice": "25.11"
+      },
+      {
+        "BookName": "Gray Dogwood",
+        "BookPrice": "17.25"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Oriana Brounfield",
+    "Books": [
+      {
+        "BookName": "Dicranodontium Moss",
+        "BookPrice": "38.01"
+      },
+      {
+        "BookName": "Pineapple",
+        "BookPrice": "36.57"
+      },
+      {
+        "BookName": "Twoflower Melicgrass",
+        "BookPrice": "29.06"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Tab Cockman",
+    "Books": [
+      {
+        "BookName": "Earlyleaf Brome",
+        "BookPrice": "63.66"
+      },
+      {
+        "BookName": "Stebbins' Desertparsley",
+        "BookPrice": "34.18"
+      },
+      {
+        "BookName": "Shingle Oak",
+        "BookPrice": "17.85"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Torrey Ricardon",
+    "Books": [
+      {
+        "BookName": "Silverweed",
+        "BookPrice": "88.66"
+      },
+      {
+        "BookName": "Maui Woodfern",
+        "BookPrice": "78.42"
+      },
+      {
+        "BookName": "Java Grass",
+        "BookPrice": "62.49"
       }
     ]
   },
@@ -350,16 +350,16 @@
     "AuthorName": "Whitaker Hursthouse",
     "Books": [
       {
-        "BookName": "Palo Blanco",
-        "BookPrice": "79.11"
+        "BookName": "Featherstem Clubmoss",
+        "BookPrice": "89.77"
       },
       {
-        "BookName": "Rough Maidenhair",
-        "BookPrice": "52.63"
+        "BookName": "Ethiopian Rattlebox",
+        "BookPrice": "87.96"
       },
       {
-        "BookName": "Macoun's Woodroot",
-        "BookPrice": "17.91"
+        "BookName": "Arrowleaf Clover",
+        "BookPrice": "1.71"
       }
     ]
   },
@@ -367,16 +367,16 @@
     "AuthorName": "Wittie Pedlow",
     "Books": [
       {
-        "BookName": "Ethiopian Rattlebox",
-        "BookPrice": "87.96"
+        "BookName": "Shagbark Hickory",
+        "BookPrice": "64.49"
       },
       {
-        "BookName": "Arizona Century Plant",
-        "BookPrice": "43.53"
+        "BookName": "Tapertip Rush",
+        "BookPrice": "49.34"
       },
       {
-        "BookName": "Airplant",
-        "BookPrice": "30.47"
+        "BookName": "Spanish Heath",
+        "BookPrice": "1.13"
       }
     ]
   },
@@ -384,12 +384,12 @@
     "AuthorName": "Abdel Ponnsett",
     "Books": [
       {
-        "BookName": "Arizona Century Plant",
-        "BookPrice": "43.53"
+        "BookName": "Australian Desert Lime",
+        "BookPrice": "42.29"
       },
       {
-        "BookName": "Black Bogrush",
-        "BookPrice": "3.48"
+        "BookName": "Spanish Heath",
+        "BookPrice": "1.13"
       }
     ]
   },
@@ -397,12 +397,12 @@
     "AuthorName": "Aila Fallanche",
     "Books": [
       {
-        "BookName": "Palo Blanco",
-        "BookPrice": "79.11"
+        "BookName": "Ethiopian Rattlebox",
+        "BookPrice": "87.96"
       },
       {
-        "BookName": "Sphinctrina Lichen",
-        "BookPrice": "67.15"
+        "BookName": "Spreading Beaksedge",
+        "BookPrice": "2.43"
       }
     ]
   },
@@ -410,12 +410,12 @@
     "AuthorName": "Aubert Vignal",
     "Books": [
       {
-        "BookName": "Mojave Linanthus",
-        "BookPrice": "82.29"
+        "BookName": "Palo Blanco",
+        "BookPrice": "79.11"
       },
       {
-        "BookName": "Stebbins' Desertparsley",
-        "BookPrice": "34.18"
+        "BookName": "Singlestem Leather-root",
+        "BookPrice": "25.11"
       }
     ]
   },
@@ -423,12 +423,12 @@
     "AuthorName": "Charlotte Scamadin",
     "Books": [
       {
-        "BookName": "Rayless Alkali Aster",
-        "BookPrice": "98.99"
+        "BookName": "Jasmine Nightshade",
+        "BookPrice": "84.89"
       },
       {
-        "BookName": "Jamaican Broom",
-        "BookPrice": "50.72"
+        "BookName": "Dicranodontium Moss",
+        "BookPrice": "38.01"
       }
     ]
   },
@@ -436,12 +436,12 @@
     "AuthorName": "Charo Blazey",
     "Books": [
       {
-        "BookName": "Pineapple",
-        "BookPrice": "36.57"
+        "BookName": "Silverweed",
+        "BookPrice": "88.66"
       },
       {
-        "BookName": "Great Basin Woollystar",
-        "BookPrice": "31.74"
+        "BookName": "Ochna",
+        "BookPrice": "58.87"
       }
     ]
   },
@@ -449,12 +449,12 @@
     "AuthorName": "Gayla Janoch",
     "Books": [
       {
-        "BookName": "Roble De Sierra",
-        "BookPrice": "53.68"
+        "BookName": "Twayblade",
+        "BookPrice": "78.31"
       },
       {
-        "BookName": "Small Floating Mannagrass",
-        "BookPrice": "49.15"
+        "BookName": "Winter Vetch",
+        "BookPrice": "19.51"
       }
     ]
   },
@@ -462,12 +462,12 @@
     "AuthorName": "Gerrie Leatham",
     "Books": [
       {
-        "BookName": "Sky Mousetail",
-        "BookPrice": "13.14"
+        "BookName": "Allen Fissidens Moss",
+        "BookPrice": "78.44"
       },
       {
-        "BookName": "Woollyleaf Bur Ragweed",
-        "BookPrice": "3.90"
+        "BookName": "Seepweed",
+        "BookPrice": "54.05"
       }
     ]
   },
@@ -475,8 +475,8 @@
     "AuthorName": "Giustino Tinkler",
     "Books": [
       {
-        "BookName": "Australian Desert Lime",
-        "BookPrice": "42.29"
+        "BookName": "Woodland Spurge",
+        "BookPrice": "80.52"
       },
       {
         "BookName": "Hairy Torchwood",
@@ -488,12 +488,12 @@
     "AuthorName": "Hall Frear",
     "Books": [
       {
-        "BookName": "Allen Fissidens Moss",
-        "BookPrice": "78.44"
+        "BookName": "Sierra Marsh Fern",
+        "BookPrice": "42.55"
       },
       {
-        "BookName": "Common Netbush",
-        "BookPrice": "77.83"
+        "BookName": "Gray Dogwood",
+        "BookPrice": "17.25"
       }
     ]
   },
@@ -501,12 +501,12 @@
     "AuthorName": "Hendrick Cleminson",
     "Books": [
       {
-        "BookName": "Borrego Milkvetch",
-        "BookPrice": "60.41"
+        "BookName": "Sphinctrina Lichen",
+        "BookPrice": "67.15"
       },
       {
-        "BookName": "Arrowleaf Clover",
-        "BookPrice": "1.71"
+        "BookName": "Java Grass",
+        "BookPrice": "62.49"
       }
     ]
   },
@@ -514,12 +514,12 @@
     "AuthorName": "Hettie Cattenach",
     "Books": [
       {
-        "BookName": "Sierra Marsh Fern",
-        "BookPrice": "42.55"
+        "BookName": "Woodland Spurge",
+        "BookPrice": "80.52"
       },
       {
-        "BookName": "Australian Desert Lime",
-        "BookPrice": "42.29"
+        "BookName": "Common Mullein",
+        "BookPrice": "37.67"
       }
     ]
   },
@@ -527,12 +527,12 @@
     "AuthorName": "Janelle Seppey",
     "Books": [
       {
-        "BookName": "Psoralea Globemallow",
-        "BookPrice": "51.18"
+        "BookName": "Allen Fissidens Moss",
+        "BookPrice": "78.44"
       },
       {
-        "BookName": "Sky Mousetail",
-        "BookPrice": "13.14"
+        "BookName": "Little Elephantshead",
+        "BookPrice": "41.81"
       }
     ]
   },
@@ -540,12 +540,12 @@
     "AuthorName": "Kellen Koppke",
     "Books": [
       {
-        "BookName": "Wisconsin Rim Lichen",
-        "BookPrice": "57.79"
+        "BookName": "Southern Pepperwort",
+        "BookPrice": "63.48"
       },
       {
-        "BookName": "Spreading Beaksedge",
-        "BookPrice": "2.43"
+        "BookName": "Wisconsin Rim Lichen",
+        "BookPrice": "57.79"
       }
     ]
   },
@@ -553,12 +553,12 @@
     "AuthorName": "Ketty Comerford",
     "Books": [
       {
-        "BookName": "Tapertip Rush",
-        "BookPrice": "49.34"
+        "BookName": "Gigantochloa",
+        "BookPrice": "65.81"
       },
       {
-        "BookName": "Pinon",
-        "BookPrice": "14.10"
+        "BookName": "Woollyleaf Bur Ragweed",
+        "BookPrice": "3.90"
       }
     ]
   },
@@ -566,12 +566,12 @@
     "AuthorName": "Kristin Roddick",
     "Books": [
       {
-        "BookName": "Chesapeake Panicgrass",
-        "BookPrice": "96.63"
+        "BookName": "Rayless Alkali Aster",
+        "BookPrice": "98.99"
       },
       {
-        "BookName": "Palo Blanco",
-        "BookPrice": "79.11"
+        "BookName": "Ethiopian Rattlebox",
+        "BookPrice": "87.96"
       }
     ]
   },
@@ -579,8 +579,21 @@
     "AuthorName": "Melody Binyon",
     "Books": [
       {
-        "BookName": "Ochna",
-        "BookPrice": "58.87"
+        "BookName": "Silverweed",
+        "BookPrice": "88.66"
+      },
+      {
+        "BookName": "Pineapple",
+        "BookPrice": "36.57"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Meredeth MacCostye",
+    "Books": [
+      {
+        "BookName": "Earlyleaf Brome",
+        "BookPrice": "63.66"
       },
       {
         "BookName": "Great Basin Woollystar",
@@ -589,28 +602,15 @@
     ]
   },
   {
-    "AuthorName": "Meredeth MacCostye",
-    "Books": [
-      {
-        "BookName": "Maui Woodfern",
-        "BookPrice": "78.42"
-      },
-      {
-        "BookName": "Jolon Clarkia",
-        "BookPrice": "40.60"
-      }
-    ]
-  },
-  {
     "AuthorName": "Nataniel Pembery",
     "Books": [
       {
-        "BookName": "Rough Maidenhair",
-        "BookPrice": "52.63"
+        "BookName": "Winter Vetch",
+        "BookPrice": "19.51"
       },
       {
-        "BookName": "Small Floating Mannagrass",
-        "BookPrice": "49.15"
+        "BookName": "Arrowleaf Clover",
+        "BookPrice": "1.71"
       }
     ]
   },
@@ -618,12 +618,12 @@
     "AuthorName": "Neron Winterflood",
     "Books": [
       {
-        "BookName": "Featherstem Clubmoss",
-        "BookPrice": "89.77"
+        "BookName": "Roble De Sierra",
+        "BookPrice": "53.68"
       },
       {
-        "BookName": "Ocellularia Lichen",
-        "BookPrice": "80.61"
+        "BookName": "Drummond's Clematis",
+        "BookPrice": "43.43"
       }
     ]
   },
@@ -631,12 +631,12 @@
     "AuthorName": "Nobie Buddington",
     "Books": [
       {
-        "BookName": "Sphinctrina Lichen",
-        "BookPrice": "67.15"
+        "BookName": "Pinon",
+        "BookPrice": "14.10"
       },
       {
-        "BookName": "Lindley's Clarkia",
-        "BookPrice": "0.87"
+        "BookName": "Spreading Beaksedge",
+        "BookPrice": "2.43"
       }
     ]
   },
@@ -644,12 +644,12 @@
     "AuthorName": "Odella Shurrock",
     "Books": [
       {
-        "BookName": "Common Netbush",
-        "BookPrice": "77.83"
+        "BookName": "Java Grass",
+        "BookPrice": "62.49"
       },
       {
-        "BookName": "Borrego Milkvetch",
-        "BookPrice": "60.41"
+        "BookName": "Gray Dogwood",
+        "BookPrice": "17.25"
       }
     ]
   },
@@ -657,12 +657,12 @@
     "AuthorName": "Porty Snookes",
     "Books": [
       {
-        "BookName": "Tapertip Rush",
-        "BookPrice": "49.34"
+        "BookName": "Allen Fissidens Moss",
+        "BookPrice": "78.44"
       },
       {
-        "BookName": "Sky Mousetail",
-        "BookPrice": "13.14"
+        "BookName": "Gigantochloa",
+        "BookPrice": "65.81"
       }
     ]
   },
@@ -670,12 +670,12 @@
     "AuthorName": "Stanly Starcks",
     "Books": [
       {
-        "BookName": "Rayless Alkali Aster",
-        "BookPrice": "98.99"
+        "BookName": "Woodland Spurge",
+        "BookPrice": "80.52"
       },
       {
-        "BookName": "Australian Desert Lime",
-        "BookPrice": "42.29"
+        "BookName": "Dicranodontium Moss",
+        "BookPrice": "38.01"
       }
     ]
   },
@@ -683,12 +683,12 @@
     "AuthorName": "Susy Breinl",
     "Books": [
       {
-        "BookName": "Palo Blanco",
-        "BookPrice": "79.11"
+        "BookName": "Ethiopian Rattlebox",
+        "BookPrice": "87.96"
       },
       {
-        "BookName": "Allen Fissidens Moss",
-        "BookPrice": "78.44"
+        "BookName": "Sierra Marsh Fern",
+        "BookPrice": "42.55"
       }
     ]
   },
@@ -696,12 +696,12 @@
     "AuthorName": "Sybyl Gasking",
     "Books": [
       {
-        "BookName": "Rayless Alkali Aster",
-        "BookPrice": "98.99"
+        "BookName": "Dicranodontium Moss",
+        "BookPrice": "38.01"
       },
       {
-        "BookName": "Wideleaf Schistidium Moss",
-        "BookPrice": "16.26"
+        "BookName": "Shingle Oak",
+        "BookPrice": "17.85"
       }
     ]
   },
@@ -709,12 +709,12 @@
     "AuthorName": "Terri Credland",
     "Books": [
       {
-        "BookName": "Singlestem Leather-root",
-        "BookPrice": "25.11"
+        "BookName": "Fringed Nutrush",
+        "BookPrice": "96.94"
       },
       {
-        "BookName": "Bigelow's Monkeyflower",
-        "BookPrice": "19.34"
+        "BookName": "Candy Barrelcactus",
+        "BookPrice": "51.78"
       }
     ]
   },
@@ -722,27 +722,9 @@
     "AuthorName": "Veronique Legges",
     "Books": [
       {
-        "BookName": "Shagbark Hickory",
-        "BookPrice": "64.49"
+        "BookName": "Black Bogrush",
+        "BookPrice": "3.48"
       },
-      {
-        "BookName": "Arizona Century Plant",
-        "BookPrice": "43.53"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Adora Albinson",
-    "Books": [
-      {
-        "BookName": "Jasmine Nightshade",
-        "BookPrice": "84.89"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Alden Vellden",
-    "Books": [
       {
         "BookName": "Spanish Heath",
         "BookPrice": "1.13"
@@ -750,11 +732,29 @@
     ]
   },
   {
+    "AuthorName": "Adora Albinson",
+    "Books": [
+      {
+        "BookName": "Arizona Century Plant",
+        "BookPrice": "43.53"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Alden Vellden",
+    "Books": [
+      {
+        "BookName": "Psoralea Globemallow",
+        "BookPrice": "51.18"
+      }
+    ]
+  },
+  {
     "AuthorName": "Auroora O' Dooley",
     "Books": [
       {
-        "BookName": "Ethiopian Rattlebox",
-        "BookPrice": "87.96"
+        "BookName": "Shagbark Hickory",
+        "BookPrice": "64.49"
       }
     ]
   },
@@ -762,8 +762,8 @@
     "AuthorName": "Austin Hollingby",
     "Books": [
       {
-        "BookName": "Stebbins' Desertparsley",
-        "BookPrice": "34.18"
+        "BookName": "Palo Blanco",
+        "BookPrice": "79.11"
       }
     ]
   },
@@ -771,8 +771,8 @@
     "AuthorName": "Caroljean Bisgrove",
     "Books": [
       {
-        "BookName": "Candy Barrelcactus",
-        "BookPrice": "51.78"
+        "BookName": "Hayfield Tarweed",
+        "BookPrice": "51.69"
       }
     ]
   },
@@ -789,8 +789,8 @@
     "AuthorName": "Chanda Adame",
     "Books": [
       {
-        "BookName": "Palo Blanco",
-        "BookPrice": "79.11"
+        "BookName": "Ethiopian Rattlebox",
+        "BookPrice": "87.96"
       }
     ]
   },
@@ -798,8 +798,8 @@
     "AuthorName": "Cornall Morgon",
     "Books": [
       {
-        "BookName": "Lapland Poppy",
-        "BookPrice": "14.54"
+        "BookName": "Wideleaf Schistidium Moss",
+        "BookPrice": "16.26"
       }
     ]
   },
@@ -807,8 +807,8 @@
     "AuthorName": "Dalton Sinclaire",
     "Books": [
       {
-        "BookName": "Australian Desert Lime",
-        "BookPrice": "42.29"
+        "BookName": "Woodland Spurge",
+        "BookPrice": "80.52"
       }
     ]
   },
@@ -816,8 +816,8 @@
     "AuthorName": "Dietrich Granville",
     "Books": [
       {
-        "BookName": "Jamaican Broom",
-        "BookPrice": "50.72"
+        "BookName": "Jasmine Nightshade",
+        "BookPrice": "84.89"
       }
     ]
   },
@@ -825,8 +825,8 @@
     "AuthorName": "Giovanni Marcham",
     "Books": [
       {
-        "BookName": "Roble De Sierra",
-        "BookPrice": "53.68"
+        "BookName": "Twayblade",
+        "BookPrice": "78.31"
       }
     ]
   },
@@ -834,8 +834,8 @@
     "AuthorName": "Isahella Zelland",
     "Books": [
       {
-        "BookName": "Lindley's Clarkia",
-        "BookPrice": "0.87"
+        "BookName": "Pinon",
+        "BookPrice": "14.10"
       }
     ]
   },
@@ -843,8 +843,8 @@
     "AuthorName": "Izaak Birkenshaw",
     "Books": [
       {
-        "BookName": "Ethiopian Rattlebox",
-        "BookPrice": "87.96"
+        "BookName": "Shagbark Hickory",
+        "BookPrice": "64.49"
       }
     ]
   },
@@ -852,8 +852,8 @@
     "AuthorName": "Jenny Boote",
     "Books": [
       {
-        "BookName": "Dicranodontium Moss",
-        "BookPrice": "38.01"
+        "BookName": "Twoflower Melicgrass",
+        "BookPrice": "29.06"
       }
     ]
   },
@@ -861,8 +861,8 @@
     "AuthorName": "Jermaine Alpine",
     "Books": [
       {
-        "BookName": "Gigantochloa",
-        "BookPrice": "65.81"
+        "BookName": "Roundheaded Leek",
+        "BookPrice": "10.41"
       }
     ]
   },
@@ -870,8 +870,8 @@
     "AuthorName": "Karla Kinnear",
     "Books": [
       {
-        "BookName": "Gray Dogwood",
-        "BookPrice": "17.25"
+        "BookName": "Desert Combleaf",
+        "BookPrice": "98.72"
       }
     ]
   },
@@ -879,8 +879,8 @@
     "AuthorName": "Lloyd Jickells",
     "Books": [
       {
-        "BookName": "Drummond's Clematis",
-        "BookPrice": "43.43"
+        "BookName": "Pyramid Bugle",
+        "BookPrice": "56.74"
       }
     ]
   },
@@ -897,8 +897,8 @@
     "AuthorName": "Marsiella Fulun",
     "Books": [
       {
-        "BookName": "Java Grass",
-        "BookPrice": "62.49"
+        "BookName": "Jamaican Broom",
+        "BookPrice": "50.72"
       }
     ]
   },
@@ -906,58 +906,13 @@
     "AuthorName": "Misti Dwight",
     "Books": [
       {
-        "BookName": "Pyramid Bugle",
-        "BookPrice": "56.74"
+        "BookName": "Macoun's Woodroot",
+        "BookPrice": "17.91"
       }
     ]
   },
   {
     "AuthorName": "Pearce Gibbon",
-    "Books": [
-      {
-        "BookName": "Candle Tree",
-        "BookPrice": "9.00"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Philbert Canland",
-    "Books": [
-      {
-        "BookName": "Great Basin Woollystar",
-        "BookPrice": "31.74"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Regan Jertz",
-    "Books": [
-      {
-        "BookName": "Maui Woodfern",
-        "BookPrice": "78.42"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Sax Careswell",
-    "Books": [
-      {
-        "BookName": "Singlestem Leather-root",
-        "BookPrice": "25.11"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Sula MacTeague",
-    "Books": [
-      {
-        "BookName": "Arizona Century Plant",
-        "BookPrice": "43.53"
-      }
-    ]
-  },
-  {
-    "AuthorName": "Tally Salzen",
     "Books": [
       {
         "BookName": "Borrego Milkvetch",
@@ -966,11 +921,56 @@
     ]
   },
   {
+    "AuthorName": "Philbert Canland",
+    "Books": [
+      {
+        "BookName": "Silverweed",
+        "BookPrice": "88.66"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Regan Jertz",
+    "Books": [
+      {
+        "BookName": "Great Basin Woollystar",
+        "BookPrice": "31.74"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Sax Careswell",
+    "Books": [
+      {
+        "BookName": "Candy Barrelcactus",
+        "BookPrice": "51.78"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Sula MacTeague",
+    "Books": [
+      {
+        "BookName": "Spanish Heath",
+        "BookPrice": "1.13"
+      }
+    ]
+  },
+  {
+    "AuthorName": "Tally Salzen",
+    "Books": [
+      {
+        "BookName": "Java Grass",
+        "BookPrice": "62.49"
+      }
+    ]
+  },
+  {
     "AuthorName": "Valene Billham",
     "Books": [
       {
-        "BookName": "Shagbark Hickory",
-        "BookPrice": "64.49"
+        "BookName": "Black Bogrush",
+        "BookPrice": "3.48"
       }
     ]
   }

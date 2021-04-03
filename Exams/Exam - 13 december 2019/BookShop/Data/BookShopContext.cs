@@ -10,11 +10,9 @@
         public BookShopContext(DbContextOptions options)
             : base(options) { }
 
-
-        public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
+        public DbSet<Book> Books { get; set; }
         public DbSet<AuthorBook> AuthorsBooks { get; set; }
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,8 +25,7 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AuthorBook>()
-                .HasKey(entity => new { entity.AuthorId, entity.BookId });
+            modelBuilder.Entity<AuthorBook>().HasKey(e => new { e.BookId, e.AuthorId });
         }
     }
 }

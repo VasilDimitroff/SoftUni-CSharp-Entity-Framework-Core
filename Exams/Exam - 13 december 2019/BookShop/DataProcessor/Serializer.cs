@@ -7,7 +7,6 @@
     using System.Text;
     using System.Xml;
     using System.Xml.Serialization;
-    using BookShop.Data.Models.Enums;
     using BookShop.DataProcessor.ExportDto;
     using Data;
     using Newtonsoft.Json;
@@ -17,47 +16,50 @@
     {
         public static string ExportMostCraziestAuthors(BookShopContext context)
         {
-            var authors = context.Authors.Select(au => new ExportAuthorDto
-            {
-                AuthorName = au.FirstName + " " + au.LastName,
-                Books = au.AuthorsBooks.OrderByDescending(a => a.Book.Price).Select(ab => new ExportBookDto
+            var authors = context.Authors.OrderByDescending(au => au.AuthorsBooks.Count())
+                .ThenBy(x => x.FirstName)
+                .Select(author => new
                 {
-                    BookName = ab.Book.Name,
-                    BookPrice = ab.Book.Price.Value.ToString("f2")
-                })
-                .ToList()
-            })
-                .ToList()
-                .OrderByDescending(author => author.Books.Count)
-                .ThenBy(author => author.AuthorName);
-                
+                    AuthorName = author.FirstName + " " + author.LastName,
+                    Books = author.AuthorsBooks
+                    .OrderByDescending(book => book.Book.Price)
+                    .Select(ab => new
+                    {
+                        BookName = ab.Book.Name,
+                        BookPrice = ab.Book.Price.ToString("f2")
+                    })
+                    .ToList()
+                })           
+                .ToList();
 
-           var json = JsonConvert.SerializeObject(authors, Formatting.Indented);
+            var json = JsonConvert.SerializeObject(authors, Formatting.Indented);
 
             return json;
         }
 
         public static string ExportOldestBooks(BookShopContext context, DateTime date)
         {
-            var oldestBooks = context.Books
-                .Where(book => book.PublishedOn < date && book.Genre == Enum.Parse<Genre>("Science"))
+            var books = context.Books
+                .Where(book => book.PublishedOn < date && book.Genre.ToString() == "Science")
                 .OrderByDescending(book => book.Pages)
                 .ThenByDescending(book => book.PublishedOn)
-                .Take(10)
-                .Select(book => new ExportOldestBookDto
+                .Select(book => new ExportBookModel
                 {
-                    Pages = book.Pages.ToString(),
+                    Pages = book.Pages,
                     Name = book.Name,
                     Date = book.PublishedOn.ToString("MM/dd/yyyy")
                 })
+                .Take(10)
                 .ToArray();
-
-            var sb = new StringBuilder();
+            
+            StringBuilder sb = new StringBuilder();
             var namespaces = new XmlSerializerNamespaces();
             namespaces.Add(String.Empty, String.Empty);
-
-            var serializer = new XmlSerializer(typeof(ExportOldestBookDto[]), new XmlRootAttribute("Books"));
-            serializer.Serialize(new StringWriter(sb), oldestBooks, namespaces);
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ExportBookModel[]), new XmlRootAttribute("Books"));
+            using (StringWriter writer = new StringWriter(sb))
+            {
+                xmlSerializer.Serialize(writer, books, namespaces);
+            }
 
             return sb.ToString().TrimEnd();
         }

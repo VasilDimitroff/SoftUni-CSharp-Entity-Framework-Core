@@ -1,27 +1,26 @@
-﻿namespace BookShop
+﻿namespace MusicHub
 {
     using System;
-    using System.Globalization;
     using System.IO;
-    using System.Linq;
 
+    using AutoMapper;
     using Microsoft.EntityFrameworkCore;
-    using Newtonsoft.Json;
-
+   
     using Data;
 
     public class StartUp
     {
         public static void Main(string[] args)
         {
-            var context = new BookShopContext();
+            var context = new MusicHubDbContext();
+
+            Mapper.Initialize(config => config.AddProfile<MusicHubProfile>());
 
             ResetDatabase(context, shouldDropDatabase: false);
 
             var projectDir = GetProjectDirectory();
-
+            
             ImportEntities(context, projectDir + @"Datasets/", projectDir + @"ImportResults/");
-
             ExportEntities(context, projectDir + @"ExportResults/");
 
             using (var transaction = context.Database.BeginTransaction())
@@ -30,36 +29,37 @@
             }
         }
 
-        private static void ImportEntities(BookShopContext context, string baseDir, string exportDir)
+        private static void ImportEntities(MusicHubDbContext context, string baseDir, string exportDir)
         {
-            var projects =
-                DataProcessor.Deserializer.ImportBooks(context,
-                    File.ReadAllText(baseDir + "books.xml"));
+            var writers = DataProcessor.Deserializer.ImportWriters(context,
+                    File.ReadAllText(baseDir + "ImportWriters.json"));
+            PrintAndExportEntityToFile(writers, exportDir + "Actual - ImportWriters.txt");
 
-            PrintAndExportEntityToFile(projects, exportDir + "Actual Result - ImportBooks.txt");
+            var producerAlbums = DataProcessor.Deserializer.ImportProducersAlbums(context,
+                    File.ReadAllText(baseDir + "ImportProducersAlbums.json"));
+            PrintAndExportEntityToFile(producerAlbums, exportDir + "Actual - ImportProducersAlbums.txt");
 
-            var employees =
-             DataProcessor.Deserializer.ImportAuthors(context,
-                 File.ReadAllText(baseDir + "authors.json"));
+            var songs = DataProcessor.Deserializer.ImportSongs(context, 
+                File.ReadAllText(baseDir + "ImportSongs.xml"));
+            PrintAndExportEntityToFile(songs, exportDir + "Actual - ImportSongs.txt");
 
-            PrintAndExportEntityToFile(employees, exportDir + "Actual Result - ImportAuthors.txt");
+            var performers = DataProcessor.Deserializer.ImportSongPerformers(context, 
+                File.ReadAllText(baseDir + "ImportSongPerformers.xml"));
+            PrintAndExportEntityToFile(performers, exportDir + "Actual - ImportSongPerformers.txt");
         }
 
-        private static void ExportEntities(BookShopContext context, string exportDir)
+        private static void ExportEntities(MusicHubDbContext context, string exportDir)
         {
+            var jsonOutput = DataProcessor.Serializer.ExportAlbumsInfo(context, 9);
+            Console.WriteLine(jsonOutput);
+            File.WriteAllText(exportDir + "Actual - AlbumsInfo.json", jsonOutput);
 
-            var exportProcrastinatedProjects = DataProcessor.Serializer.ExportMostCraziestAuthors(context);
-            Console.WriteLine(exportProcrastinatedProjects);
-            File.WriteAllText(exportDir + "Actual Result - ExportMostCraziestAuthors.json", exportProcrastinatedProjects);
-
-            DateTime dateTime = DateTime.ParseExact("25/01/2017", "dd/MM/yyyy", CultureInfo.InvariantCulture);
-
-            var exportTopMovies = DataProcessor.Serializer.ExportOldestBooks(context, dateTime);
-            Console.WriteLine(exportTopMovies);
-            File.WriteAllText(exportDir + "Actual Result - ExportOldestBooks.xml", exportTopMovies);
+            var xmlOutput = DataProcessor.Serializer.ExportSongsAboveDuration(context, 4);
+            Console.WriteLine(xmlOutput);
+            File.WriteAllText(exportDir + "Actual - SongsAboveDuration.xml", xmlOutput);
         }
 
-        private static void ResetDatabase(BookShopContext context, bool shouldDropDatabase = false)
+        private static void ResetDatabase(MusicHubDbContext context, bool shouldDropDatabase = false)
         {
             if (shouldDropDatabase)
             {

@@ -27,56 +27,56 @@
 
         public static string ImportBooks(BookShopContext context, string xmlString)
         {
-            var serializer = new XmlSerializer(typeof(ImportBookDto[]), new XmlRootAttribute("Books"));
-            var booksDto = (ImportBookDto[])serializer.Deserialize(new StringReader(xmlString));
+            var serializer = new XmlSerializer(typeof(ImportBookModel[]), new XmlRootAttribute("Books"));
+            var booksModels = (ImportBookModel[])serializer.Deserialize(new StringReader(xmlString));
+
             var sb = new StringBuilder();
-            var books = new List<Book>();
 
-            foreach (var bookDto in booksDto)
+            foreach (var bookModel in booksModels)
             {
-                if (!IsValid(bookDto))
+                if (!IsValid(bookModel))
                 {
                     sb.AppendLine("Invalid data!");
                     continue;
                 }
-               
-                Genre genreValue;
-                bool isGenreValid = Enum.TryParse<Genre>(Enum.GetName(typeof(Genre), bookDto.GenreInt), out genreValue);
-
-                if (!isGenreValid)
-                {
-                    sb.AppendLine("Invalid data!");
-                    continue;
-                }
-
-                DateTime date = DateTime.ParseExact(bookDto.PublishedOn, "MM/dd/yyyy", CultureInfo.InvariantCulture);
 
                 var book = new Book()
                 {
-                    Name = bookDto.Name,
-                    Genre = genreValue,
-                    Price = bookDto.Price,
-                    Pages = bookDto.Pages,
-                    PublishedOn = date
+                    Name = bookModel.Name,
+                    Price = decimal.Parse(bookModel.Price.ToString("f2")),
+                    Pages = bookModel.Pages
                 };
 
-                books.Add(book);
-                sb.AppendLine($"Successfully imported book {book.Name} for {book.Price.Value.ToString("f2")}.");
+                DateTime publishedOn;
+
+                bool isPublishedOnValid = DateTime.TryParseExact(bookModel.PublishedOn, "MM/dd/yyyy", CultureInfo.InvariantCulture,
+                    DateTimeStyles.None, out publishedOn);
+            
+                Genre genre;
+                bool isGenreParsed = Enum.TryParse<Genre>(bookModel.Genre, out genre);
+
+                if (!isGenreParsed || !isPublishedOnValid || (bookModel.Genre != "1" && bookModel.Genre != "2" && bookModel.Genre != "3"))
+                {
+                    sb.AppendLine("Invalid data!");
+                    continue;
+                }
+                
+                book.PublishedOn = publishedOn;
+                book.Genre = genre;
+
+                context.Books.Add(book);
+                context.SaveChanges();
+                sb.AppendLine($"Successfully imported book {book.Name} for {book.Price}.");
             }
-
-            context.Books.AddRange(books);
-
-            context.SaveChanges();
 
             return sb.ToString().TrimEnd();
         }
 
         public static string ImportAuthors(BookShopContext context, string jsonString)
         {
-            var authorsDto = JsonConvert.DeserializeObject<ImportAuthorDto[]>(jsonString);
+            var authorsDto = JsonConvert.DeserializeObject<ImportAuthorModel[]>(jsonString);
+
             var sb = new StringBuilder();
-            var authors = new List<Author>();
-            int counter = 0;
 
             foreach (var authorDto in authorsDto)
             {
@@ -86,9 +86,9 @@
                     continue;
                 }
 
-                var email = context.Authors.FirstOrDefault(x => x.Email == authorDto.Email);
+                var authorEmail = context.Authors.FirstOrDefault(x => x.Email == authorDto.Email);
 
-                if (email != null)
+                if (authorEmail != null)
                 {
                     sb.AppendLine("Invalid data!");
                     continue;
@@ -102,45 +102,41 @@
                     Email = authorDto.Email,
                 };
 
-                var authorBooks = new List<AuthorBook>();
-
                 foreach (var bookDto in authorDto.Books)
                 {
-                    var book = context.Books.FirstOrDefault(b => b.Id == bookDto.Id);
+                    if (!IsValid(bookDto))
+                    {
+                        sb.AppendLine("Invalid data!");
+                        continue;
+                    }
 
-                    if (book == null)
+                    var currentBook = context.Books.FirstOrDefault(x => x.Id == bookDto.Id);
+
+                    if (currentBook == null)
                     {
                         continue;
                     }
 
-                    var currentBook = new AuthorBook()
+                    var authorBook = new AuthorBook()
                     {
-                        BookId = bookDto.Id.Value,
-                        Author = author
+                        Author = author,
+                        Book = currentBook
                     };
 
-                    authorBooks.Add(currentBook);
-                    context.AuthorsBooks.Add(currentBook);
-                    counter++;
+                    author.AuthorsBooks.Add(authorBook);
                 }
 
-                if (authorBooks.Count < 1)
+                if (author.AuthorsBooks.Count < 1)
                 {
                     sb.AppendLine("Invalid data!");
                     continue;
                 }
 
-                foreach (var autBook in authorBooks)
-                {
-                    author.AuthorsBooks.Add(autBook);
-                }
-
-                authors.Add(author);
+                context.Authors.Add(author);
+                context.SaveChanges();
                 sb.AppendLine($"Successfully imported author - {author.FirstName + " " + author.LastName} with {author.AuthorsBooks.Count} books.");
             }
-            //sb.AppendLine($"count {counter}");
-            context.Authors.AddRange(authors);
-            context.SaveChanges();
+
 
             return sb.ToString().TrimEnd();
         }

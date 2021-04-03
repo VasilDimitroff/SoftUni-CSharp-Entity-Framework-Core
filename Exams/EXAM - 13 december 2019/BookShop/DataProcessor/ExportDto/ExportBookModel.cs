@@ -6,15 +6,11 @@ using System.Xml.Serialization;
 namespace BookShop.DataProcessor.ExportDto
 {
     [XmlType("Book")]
-    public class ExportOldestBookDto
+    public class ExportBookModel
     {
         [XmlAttribute("Pages")]
-        public string Pages { get; set; }
-
-        [XmlElement("Name")]
+        public int Pages { get; set; }
         public string Name { get; set; }
-
-        [XmlElement("Date")]
         public string Date { get; set; }
     }
 }
