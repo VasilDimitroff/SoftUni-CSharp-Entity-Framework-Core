@@ -9,19 +9,21 @@ namespace TeisterMask.Data.Models
     {
         public int Id { get; set; }
 
-        [RegularExpression(@"^[0-9A-z]{3,}$")]
+        [MinLength(3)]
         [MaxLength(40)]
         [Required]
+        [RegularExpression(@"^[A-z0-9]{3,}$")]
+        //!!
         public string Username { get; set; }
 
-        [EmailAddress]
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
-        [RegularExpression(@"^[0-9]{3}-[0-9]{3}-[0-9]{4}$")]
         [Required]
+        [RegularExpression(@"^[0-9]{3}-[0-9]{3}-[0-9]{4}$")]
         public string Phone { get; set; }
 
-        public ICollection<EmployeeTask> EmployeesTasks { get; set; } = new HashSet<EmployeeTask>();
+        public virtual ICollection<EmployeeTask> EmployeesTasks { get; set; } = new HashSet<EmployeeTask>();
     }
 }

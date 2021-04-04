@@ -9,16 +9,12 @@ namespace TeisterMask.Data.Models
     {
         public int Id { get; set; }
 
-
         [MinLength(2)]
         [MaxLength(40)]
         [Required]
         public string Name { get; set; }
-
         public DateTime OpenDate { get; set; }
-
         public DateTime? DueDate { get; set; }
-
-        public ICollection<Task> Tasks { get; set; } = new HashSet<Task>();
+        public virtual ICollection<Task> Tasks { get; set; } = new HashSet<Task>();
     }
 }

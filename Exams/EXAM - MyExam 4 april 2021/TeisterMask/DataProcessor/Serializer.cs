@@ -15,16 +15,18 @@
     {
         public static string ExportProjectWithTheirTasks(TeisterMaskContext context)
         {
-            var projects = context.Projects.Where(p => p.Tasks.Count() > 0)
-                .Select(project => new ExportProjectDto
+            var projects = context.Projects
+                .Where(p => p.Tasks.Count() > 0)
+                .ToArray()
+                .Select(project => new ExportProjectsModel
                 {
-                    TasksCount = project.Tasks.Count(),
+                    TasksCount = project.Tasks.Count,
                     ProjectName = project.Name,
                     HasEndDate = project.DueDate.HasValue ? "Yes" : "No",
-                    Tasks = project.Tasks.Select(task => new TaskDto
+                    Tasks = project.Tasks.ToArray().Select(task => new ExportTaskModel
                     {
                         Name = task.Name,
-                        Label = task.LabelType.ToString()
+                        Label = task.LabelType.ToString(),
                     })
                     .OrderBy(task => task.Name)
                     .ToArray()
@@ -33,15 +35,13 @@
                 .ThenBy(project => project.ProjectName)
                 .ToArray();
 
-
-            var serializer = new XmlSerializer(typeof(ExportProjectDto[]), new XmlRootAttribute("Projects"));
             StringBuilder sb = new StringBuilder();
             var namespaces = new XmlSerializerNamespaces();
             namespaces.Add(String.Empty, String.Empty);
-
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ExportProjectsModel[]), new XmlRootAttribute("Projects"));
             using (StringWriter writer = new StringWriter(sb))
             {
-                serializer.Serialize(writer, projects, namespaces);
+                xmlSerializer.Serialize(writer, projects, namespaces);
             }
 
             return sb.ToString().TrimEnd();
@@ -51,27 +51,28 @@
         {
             var employees = context.Employees
                 .Where(employee => employee.EmployeesTasks.Any(et => et.Task.OpenDate >= date))
-                .Select(employee => new ExportEmployeesDto
+                .ToArray()
+                .Select(employee => new
                 {
                     Username = employee.Username,
-                    Tasks = employee.EmployeesTasks
-                    .Where(et => et.Task.OpenDate >= date)
-                    .OrderByDescending(et => et.Task.DueDate)
-                    .ThenBy(et => et.Task.Name)
-                    .Select(et => new ExportTaskDto
+                    Tasks = employee.EmployeesTasks.Where(et => et.Task.OpenDate >= date)
+                    .OrderByDescending(task => task.Task.DueDate)
+                    .ThenBy(task => task.Task.Name)
+                    .ToArray()
+                    .Select(task => new
                     {
-                        TaskName = et.Task.Name,
-                        OpenDate = et.Task.OpenDate.ToString("d", CultureInfo.InvariantCulture),
-                        DueDate = et.Task.DueDate.ToString("d", CultureInfo.InvariantCulture),
-                        LabelType = et.Task.LabelType.ToString(),
-                        ExecutionType = et.Task.ExecutionType.ToString()
+                        TaskName = task.Task.Name,
+                        OpenDate = task.Task.OpenDate.ToString("d", CultureInfo.InvariantCulture),
+                        DueDate = task.Task.DueDate.ToString("d", CultureInfo.InvariantCulture),
+                        LabelType = task.Task.LabelType.ToString(),
+                        ExecutionType = task.Task.ExecutionType.ToString()
                     })
-                    .ToList()
+                    .ToArray()
                 })
-                .OrderByDescending(emp => emp.Tasks.Count())
-                .ThenBy(emp => emp.Username)
+                .OrderByDescending(employee => employee.Tasks.Count())
+                .ThenBy(employee => employee.Username)
                 .Take(10)
-                .ToList();
+                .ToArray();
 
             var json = JsonConvert.SerializeObject(employees, Formatting.Indented);
 

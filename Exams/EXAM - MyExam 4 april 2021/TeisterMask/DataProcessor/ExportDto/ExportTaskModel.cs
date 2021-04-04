@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace TeisterMask.DataProcessor.ExportDto
 {
     [XmlType("Task")]
-    public class TaskDto
+    public class ExportTaskModel
     {
         [XmlElement("Name")]
         public string Name { get; set; }
